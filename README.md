@@ -1,5 +1,7 @@
 # Makeup SQL Quiz
 
+[![SQL quiz checks](https://github.com/QTTN1/Supabase-SQL-Quiz/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/QTTN1/Supabase-SQL-Quiz/actions/workflows/ci.yml)
+
 ## About the project
 
 This project is an interactive SQL quiz built to give learners practice writing
