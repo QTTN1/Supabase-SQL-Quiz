@@ -208,7 +208,7 @@ WHERE p.currency IS NOT NULL
       WHERE peer.category_id = p.category_id
         AND peer.currency = p.currency
   )
-ORDER BY p.price DESC, category ASC, product ASC, COALESCE(brand, '') ASC
+ORDER BY p.price DESC, category ASC, product ASC, COALESCE(b.name, '') ASC
 LIMIT 5;""",
         expected_result="""5 rows, in order: lipstick / GBP / Dior Holiday Couture Collection /
 dior / 77.00; palette / GBP / Couture Colour Wardrobe palette / dior / 65.00;
