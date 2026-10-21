@@ -176,6 +176,13 @@ def is_answer_unsaved(query: str, saved_query: str | None) -> bool:
     return bool(query.strip()) and saved_query != query
 
 
+def is_quiz_complete(submissions: dict[str, dict]) -> bool:
+    return all(
+        question.question_id in submissions
+        for question in QUESTIONS
+    )
+
+
 def switch_to_question(question_index: int) -> None:
     st.session_state["active_question_index"] = question_index
     st.session_state["question_selector"] = question_index
@@ -539,6 +546,15 @@ def render_quiz(client, configuration: dict[str, str]) -> None:
             hide_index=True,
             use_container_width=True,
         )
+        if is_quiz_complete(submissions):
+            st.subheader("Answer key")
+            st.caption(
+                "You submitted all five questions. These are example queries "
+                "that produce the expected results."
+            )
+            for item in QUESTIONS:
+                with st.expander(f"Example correct query: {item.title}"):
+                    st.code(item.answer_sql, language="sql")
 
     if "last_query_result" in st.session_state:
         result = st.session_state["last_query_result"]

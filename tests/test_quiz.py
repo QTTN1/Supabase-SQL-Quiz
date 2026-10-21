@@ -5,7 +5,7 @@ from unittest.mock import Mock, patch
 from pglast.ast import SelectStmt
 from pglast import parse_sql
 
-from app import is_answer_unsaved, log_quiz_activity
+from app import is_answer_unsaved, is_quiz_complete, log_quiz_activity
 from quiz import (
     MAX_RESULT_ROWS,
     QUESTIONS,
@@ -49,6 +49,20 @@ class QuizQuestionTests(unittest.TestCase):
         self.assertFalse(is_answer_unsaved("  ", None))
         self.assertFalse(is_answer_unsaved("SELECT 1", "SELECT 1"))
         self.assertTrue(is_answer_unsaved("SELECT 2", "SELECT 1"))
+
+    # Unlocks answer key only after every submission.
+    def test_quiz_completes_only_after_all_questions_are_submitted(self):
+        partial_submissions = {
+            question.question_id: {}
+            for question in QUESTIONS[:-1]
+        }
+        complete_submissions = {
+            question.question_id: {}
+            for question in QUESTIONS
+        }
+
+        self.assertFalse(is_quiz_complete(partial_submissions))
+        self.assertTrue(is_quiz_complete(complete_submissions))
 
     # Saves submission details to the activity log.
     def test_activity_log_records_submit_without_exposing_other_fields(self):

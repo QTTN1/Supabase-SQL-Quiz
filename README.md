@@ -23,9 +23,11 @@ an account or sign in, then choose a question and write a SQL query.
 - **Submit answer** grades the result and updates your score summary.
 - Your SQL does not need to match one particular query. A submission is correct
   when its result matches the expected answer.
+- After submitting all five questions, the results summary appears with an
+  answer key containing one example query for each question.
 - Each question has two progressive hints. The expected result is hidden until
   both hints have been viewed and you have submitted a query that runs but
-  returns an incorrect result. The app does not display the reference SQL.
+  returns an incorrect result.
 - **Save answer** saves your current query to your signed-in account. If you
   change questions with an unsaved query, the app prompts you before switching.
 
