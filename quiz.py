@@ -59,14 +59,12 @@ cargo cosmetics (20).""",
         title="Compare category averages in USD",
         prompt=(
             "Normalize each product price to USD using these fixed quiz rates: "
-            "USD = 1.00, CAD = 0.74, GBP = 1.28 (multiply the listed price by "
-            "the rate). Among products with a price and one of these currencies, "
-            "return each category whose average normalized price is above the "
-            "overall average normalized price. Show the category, product count, "
+            "USD = 1.00, CAD = 0.74, GBP = 1.28. Among products with a price and "
+            "currency, return each category whose average normalized price is above "
+            "the overall average normalized price. Show the category, product count, "
             "and average price in USD, rounded to two decimals. Ignore products "
             "without a category when calculating category averages, but include "
             "them in the overall average. Order by category average descending. "
-            "Use the listed rates as the conversion rates for this quiz."
         ),
         answer_sql="""WITH converted_products AS (
     SELECT p.category_id,
@@ -112,7 +110,7 @@ palette / 10 / 22.74; concealer / 18 / 17.03.""",
         prompt=(
             "Find every NYX product priced below $10 USD whose description "
             "contains 'strong' or 'long-lasting' (case-insensitive). Also "
-            "recognize the unhyphenated phrase 'long lasting'. Show product, "
+            "recognize the unhyphenated phrase 'long lasting'. Include product, "
             "category, price, currency, and description."
         ),
         answer_sql="""SELECT p.name AS product, c.name AS category,

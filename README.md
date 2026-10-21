@@ -7,8 +7,7 @@ queries against a real-world-style product catalog. The quiz contains five
 questions worth 20 points total, increasing in difficulty and covering joins,
 aggregations, correlated and nested queries, filtering, and currency conversion.
 
-The catalog is based on [`makeup.csv`](./makeup.csv), derived from the
-[Makeup Dataset on Kaggle](https://www.kaggle.com/datasets/raiusama/makeup-dataset?resource=download).
+The catalog is based on [`makeup.csv`](./makeup.csv), derived from the [Makeup Dataset on Kaggle](https://www.kaggle.com/datasets/raiusama/makeup-dataset?resource=download).
 It includes product details such as brand, category, price, currency, creation
 date, and description. The catalog is used for educational SQL practice; prices
 and product details reflect the source dataset and are not intended as current
@@ -37,11 +36,11 @@ transaction, with a five-second timeout and a maximum of 200 displayed rows.
 
 The catalog is organized into three related tables:
 
-| Table | Purpose | Main fields |
-| --- | --- | --- |
-| `brands` | One row per product brand. | `id`, `name` |
-| `categories` | One row per product category. | `id`, `name` |
-| `products` | Product catalog; brand and category are linked by foreign keys. | `id`, `brand_id`, `category_id`, `name`, `price`, `currency`, `created_at`, `description` |
+| Table          | Purpose                                                         | Main fields                                                                                               |
+| -------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `brands`     | One row per product brand.                                      | `id`, `name`                                                                                          |
+| `categories` | One row per product category.                                   | `id`, `name`                                                                                          |
+| `products`   | Product catalog; brand and category are linked by foreign keys. | `id`, `brand_id`, `category_id`, `name`, `price`, `currency`, `created_at`, `description` |
 
 `products.brand_id` references `brands.id`, and `products.category_id`
 references `categories.id`. The references may be empty when the source data
@@ -72,3 +71,8 @@ make the log append-only for quiz takers: they cannot update or delete entries.
 
 Dataset source: [Makeup Dataset by raiusama on Kaggle](https://www.kaggle.com/datasets/raiusama/makeup-dataset?resource=download).
 Refer to the Kaggle listing for its license and source-specific details.
+
+Inspiration: 
+
+This project was inspired by the class [SQL Tutorial with Supabase](https://sql-practice-lab-ids706.vercel.app/),
+which demonstrates practicing SQL against a hosted Supabase database.
